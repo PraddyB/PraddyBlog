@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+	  <http:listener-config name="blog-api-httpListenerConfig">
+        <http:listener-connection host="${http.host}" port="${http.port}" />
+      </http:listener-config>
+      <apikit:config name="blog-api-config" api="resource::13d3f873-71fe-4f35-abcb-ef2f9057e844:blog-api:1.0.0:raml:zip:blog-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<global-property doc:name="Global Property" doc:id="6b70cea7-1979-4cb8-95ea-66ff6dd0bc20" name="env" value="local" />
+	<configuration-properties doc:name="Configuration properties" doc:id="8eaad396-7c9d-4e0f-ade9-eee5908a1516" file="${env}.properties" />
+	<os:object-store name="Object_store" doc:name="Object store" doc:id="75cd8d3e-cb7e-46ec-aba1-5d71c6ab4faa" />
+	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="fd5c004f-eb73-41f3-bd88-e286c5ab53dc" flowRef="blog-api-main" />
+	
+</mule>

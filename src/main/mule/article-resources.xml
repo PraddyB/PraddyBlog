@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="Add_articles" doc:id="d714a0b5-0ed7-4178-aea0-009cbbfc020b" >
+		<logger level="INFO" message="START post:\articles:application\json:blog-api-config" doc:name="START" />
+		<os:retrieve doc:name="Retrieve" doc:id="75f147e2-5e09-41dd-88e1-ab38f97abed4" key="articles" objectStore="Object_store" target="articles">
+			<os:default-value><![CDATA[#[output application/json ---[]]]]></os:default-value>
+		</os:retrieve>
+		<ee:transform doc:name="Adding articles" doc:id="82e1660f-e87c-4f08-9a46-39563a100fbd">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+(vars.articles default [])+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<os:store doc:name="Store" doc:id="f85f01d2-377b-4580-a29c-af174255d86f" key="articles" objectStore="Object_store" />
+		<remove-variable doc:name="Remove Variable" doc:id="448f492b-5b67-4aba-af3f-11bb2d49dd70" variableName="articles" />
+		<logger level="INFO" doc:name="END" doc:id="3b130f04-d74a-4937-9cc9-44352aceccd8" message="Ending POST/articles" />
+	</sub-flow>
+</mule>

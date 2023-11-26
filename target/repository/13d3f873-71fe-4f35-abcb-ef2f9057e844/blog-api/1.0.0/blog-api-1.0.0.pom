@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>13d3f873-71fe-4f35-abcb-ef2f9057e844</groupId>
+  <artifactId>blog-api</artifactId>
+  <version>1.0.0</version>
+  <name>Blog API</name>
+  <properties>
+    <classifier>raml</classifier>
+    <main>blog-api.raml</main>
+    <status>published</status>
+    <originalFormatVersion>1.0</originalFormatVersion>
+    <apiVersion>v1</apiVersion>
+    <projectId>4b79f0fa-e1d7-4b8b-aa22-e87b4e0df209</projectId>
+    <branchId>master</branchId>
+    <commitId>9cb92998885033f8f492ea19a2f6d2cf99dde9e0</commitId>
+    <keywords/>
+    <type>rest-api</type>
+    <mainFile>blog-api.raml</mainFile>
+  </properties>
+  <repositories>
+    <repository>
+      <id>anypoint-exchange</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+    </repository>
+  </repositories>
+</project>
